@@ -2,34 +2,34 @@ import React, { Component } from "react";
 
 class Counter extends Component {
   state = {
-    count: 0,
-    tags: ["tag1", "tag2", "tag3"]
-  }; // state is a property (set it to object) store data that the component needs
+    count: 0
+  };
 
   styles = {
     fontSize: 30,
     fontWeight: "bold"
   };
 
+  handleIncreament = () => {
+    console.log("Increament Clicked", this);
+    this.setState({ count: this.state.count + 1 });
+  };
+
   render() {
     return (
-      // here () is used for multilined return
       <div>
         <span style={this.styles} className={this.getBadgeClasses()}>
           {this.formatCount()}
         </span>
-        <button style={{ fontSize: 30 }} className="btn btn-secondary btn-sm">
+        <button
+          onClick={this.handleIncreament}
+          style={{ fontSize: 30 }}
+          className="btn btn-secondary btn-sm"
+        >
           Increment
         </button>
-        <ul>
-          {this.state.tags.map(tag => (
-            <li key={tag}>{tag}</li>
-          ))}
-        </ul>
-      </div> // we can use React.Fragment instead of div because its the child of this
+      </div>
     );
-    //line 8 and 9 is compiled to React.createElement... here h1 and button are two elements .... but for using div
-    // .. here compiled to  React.createElement(div) .
   }
 
   getBadgeClasses() {
@@ -39,8 +39,6 @@ class Counter extends Component {
   }
 
   formatCount() {
-    // return this.state.count===0 ? 'Zero' : this.state.count; instead of this
-    // using object destructering we can write:
     const { count } = this.state;
     return count === 0 ? <h1>Zero</h1> : count;
   }
