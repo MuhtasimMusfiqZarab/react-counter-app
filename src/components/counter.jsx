@@ -2,7 +2,8 @@ import React, { Component } from "react";
 
 class Counter extends Component {
   state = {
-    count: 0
+    count: 0,
+    tags: ["tag1", "tag2", "tag3"]
   }; // state is a property (set it to object) store data that the component needs
 
   styles = {
@@ -20,6 +21,11 @@ class Counter extends Component {
         <button style={{ fontSize: 30 }} className="btn btn-secondary btn-sm">
           Increment
         </button>
+        <ul>
+          {this.state.tags.map(tag => (
+            <li key={tag}>{tag}</li>
+          ))}
+        </ul>
       </div> // we can use React.Fragment instead of div because its the child of this
     );
     //line 8 and 9 is compiled to React.createElement... here h1 and button are two elements .... but for using div
